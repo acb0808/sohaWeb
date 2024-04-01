@@ -37,6 +37,8 @@
             <button onclick="print_test()">시험지 출력하기</button>
             <button onclick="print_answer()">답지 출력하기</button>
             <button onclick="print_passage()">보기 출력하기</button>
+            <input type="checkbox" name="hide" id="hideKor" onchange="hide(this)">
+            <label for="hideKor">한글 숨기기</label>
         </div>
         <div class="test-area" style="margin-top: 20px;">
             <table>
@@ -133,6 +135,18 @@
                     document.querySelector('.passage').setAttribute('style', 'display:grid')
                 }, 100)
             }, 10)
+        }
+
+        function hide(element) {
+            if (element.checked) {
+                for (i of document.querySelectorAll('.kor')) {
+                    i.setAttribute('style', 'font-size:0')
+                }
+            } else {
+                for (i of document.querySelectorAll('.kor')) {
+                    i.setAttribute('style', '')
+                }
+            }
         }
     </script>
 </body>
