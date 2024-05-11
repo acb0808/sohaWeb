@@ -7,5 +7,5 @@
 * Project SOHA_WEB is not associated with Gyeonggido Office of Education(soha-h).
 * contact : 0808sh2@naver.com
 ## 링크
-영어단어 시험 1차 (https://acb0808.github.io/sohaWeb/english1/test.html)
-영어단어 시험 2차 (https://acb0808.github.io/sohaWeb/english2/test.html)
+- 영어단어 시험 1차 (https://acb0808.github.io/sohaWeb/english1/test.html)
+- 영어단어 시험 2차 (https://acb0808.github.io/sohaWeb/english2/test.html)
