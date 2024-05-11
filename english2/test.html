@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영단어 모의시험</title>
+    <style>
+
+        table {
+            width: 100%;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+            grid-template-columns: 1fr;
+        }
+        th, td {
+            border: 1px solid #444444;
+            padding: 10px;
+            width: 120px;
+        }
+        tr {
+            display: flex;
+            flex: 1;
+        }
+        .passage {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+        span {
+            border: 1px solid;
+            padding: 10px;
+        }
+
+        .small table {
+            font-size: 10px;
+            width: 100%;
+            border: 1px solid #444444;
+            border-collapse: collapse;
+            grid-template-columns: 1fr;
+        }
+        .passage.small {
+            border: 1px solid;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="a4-size" style="width: 720px;">
+        <div class="button-area">
+            <h1>주의! 프린트가 오작동 할 수 있음! 꼭 미리보기를 통해 확인할것!</h1>
+            <button onclick="print_test()">시험지 출력하기</button>
+            <button onclick="print_answer()">답지 출력하기</button>
+            <button onclick="print_passage()">보기 출력하기</button>
+            <input type="checkbox" name="hide" id="hideKor" onchange="hide(this)">
+            <label for="hideKor">한글 숨기기</label>
+            <input type="checkbox" name="size" id="size" onchange="sizechange(this)">
+            <label for="size">글씨작게</label>
+        </div>
+        <div class="test-area" style="margin-top: 20px;">
+            <table>
+                <thead>
+                    <tr>
+                        <td>영어</td>
+                        <td>한글</td>
+                        <td>영어</td>
+                        <td>한글</td>
+                        <td>영어</td>
+                        <td>한글</td>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                </tbody>
+            </table>
+        </div>
+        <div class="passage" style="margin-top: 10px; width: 840px;">
+        </div>
+    </div>
+    <script src="./script.js"></script>
+    <noscript>please enable Javascirpt</noscript>
+    <script>
+        for (i of x) {
+            document.querySelector('.passage').innerHTML += `<span>${i[1]}</span>`
+        }
+        let currentIndex = x.length;
+        while (currentIndex != 0) {
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            [x[currentIndex], x[randomIndex]] = [x[randomIndex], x[currentIndex]];
+        }
+        if (x) {
+            x.push(['',''])
+            x.push(['',''])
+            let wordIndex = Math.floor((x.length) / 3)
+            let i = 0
+            while (i < wordIndex) {
+                document.querySelector('tbody').innerHTML += `
+                <tr>
+                    <td>${x[i*3][0]}</td>
+                    <td class="kor">${x[i*3][1]}</td>
+                    <td>${x[i*3+1][0]}</td>
+                    <td class="kor">${x[i*3+1][1]}</td>
+                    <td>${x[i*3+2][0]}</td>
+                    <td class="kor">${x[i*3+2][1]}</td>
+                </tr>
+                `
+                i ++;
+            }
+            console.log(i)
+
+        }
+        function print_test() {
+            document.querySelector('.button-area').setAttribute('style', 'display:none')
+            document.querySelector('.passage').setAttribute('style', 'display:none')
+            document.querySelector('.test-area').setAttribute('class', 'test-area small')
+            document.querySelector('.passage').setAttribute('class', 'passage small')
+            for (i of document.querySelectorAll('.kor')) {
+                i.setAttribute('style', 'font-size:0')
+            }
+            setTimeout(() => {
+                print()
+                setTimeout (() => {
+                    document.querySelector('.button-area').setAttribute('style', 'display:block')
+                    document.querySelector('.passage').setAttribute('style', 'display:grid')
+                    for (i of document.querySelectorAll('.kor')) {
+                        i.setAttribute('style', '')
+                    }
+                    document.querySelector('.test-area').setAttribute('class', 'test-area')
+                    document.querySelector('.passage').setAttribute('class', 'passage')
+                }, 100)
+            }, 10)
+        }
+        function print_passage() {
+            document.querySelector('.button-area').setAttribute('style', 'display:none')
+            document.querySelector('.test-area').setAttribute('style', 'display:none')
+            document.querySelector('.test-area').setAttribute('class', 'test-area small')
+            document.querySelector('.passage').setAttribute('class', 'passage small')
+            setTimeout(() => {
+                print()
+                setTimeout (() => {
+                    document.querySelector('.test-area').setAttribute('style', 'display:block')
+                    document.querySelector('.button-area').setAttribute('style', 'display:block')
+                    document.querySelector('.passage').setAttribute('style', 'display:grid')
+                    document.querySelector('.test-area').setAttribute('class', 'test-area')
+                    document.querySelector('.passage').setAttribute('class', 'passage')
+                }, 100)
+            }, 10)
+        }
+
+        function print_answer() {
+            document.querySelector('.button-area').setAttribute('style', 'display:none')
+            document.querySelector('.passage').setAttribute('style', 'display:none')
+            document.querySelector('.test-area').setAttribute('class', 'test-area small')
+            document.querySelector('.passage').setAttribute('class', 'passage small')
+            setTimeout(() => {
+                print()
+                setTimeout (() => {
+                    document.querySelector('.test-area').setAttribute('style', 'display:block')
+                    document.querySelector('.button-area').setAttribute('style', 'display:block')
+                    document.querySelector('.passage').setAttribute('style', 'display:grid')
+                    document.querySelector('.test-area').setAttribute('class', 'test-area')
+                    document.querySelector('.passage').setAttribute('class', 'passage')
+                }, 100)
+            }, 10)
+        }
+
+        function hide(element) {
+            if (element.checked) {
+                for (i of document.querySelectorAll('.kor')) {
+                    i.setAttribute('style', 'font-size:0')
+                }
+            } else {
+                for (i of document.querySelectorAll('.kor')) {
+                    i.setAttribute('style', '')
+                }
+            }
+        }
+
+        function sizechange(element) {
+            console.log(element.checked)
+            if (element.checked) {
+                document.querySelector('.test-area').setAttribute('class', 'test-area small')
+                document.querySelector('.passage').setAttribute('class', 'passage small')
+                console.log(1)
+            } else {
+                document.querySelector('.test-area').setAttribute('class', 'test-area')
+                document.querySelector('.passage').setAttribute('class', 'passage')
+                console.log(2)
+            }
+        }
+    </script>
+</body>
+</html>
