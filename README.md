@@ -9,3 +9,4 @@
 ## 링크
 - [영어단어 시험 1차](https://acb0808.github.io/sohaWeb/english1/test.html)
 - [영어단어 시험 2차](https://acb0808.github.io/sohaWeb/english2/test.html)
+- [볼링 시뮬레이터](https://acb0808.github.io/sohaWeb/bowling/index.html)
